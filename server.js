@@ -74,6 +74,11 @@ app.post("/login", async(req, res) => {
             return res.status(400).json({message: "Invalid username or password"});
         }
 
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(400).json({message: "Invalid password"});
+        }
+
         const token = jwt.sign({username}, SECRET_KEY);  //調用jsonwebtoken中的jwt.sign()函式，該函式返回一個字串，即為token，這個token中會包含username: XXX、SECRET_KEY，toekn的有效期限為1小時，超過1小時，則token失效，用戶需要重新登入
         res.json({token});
     }
