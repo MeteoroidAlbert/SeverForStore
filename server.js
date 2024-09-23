@@ -92,7 +92,7 @@ app.post("/reply", async(req, res) => {
         const { CVSAddress } = req.body;
         // currenStoreAddress = CVSAddress;
         // res.json({ "StoreAddress": CVSAddress });
-        res.redirect(`http://localhost:3000/purchase?address=${encodeURIComponent(CVSAddress)}`);
+        res.redirect(`https://meteoroidalbert.github.io/fakeStore/#/purchase?address=${encodeURIComponent(CVSAddress)}`);
     }
     catch (error) {
         res.json({"Error": error});
